@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		margin:0; padding:0;
+	}
+	#bz{
+		width:200px; height:200px; border:2px solid red;
+	}
+	.iectain{
+		position: relative;
+		margin-left: 50px;
+	}
+	#ie,#ie *{
+		box-sizing: border-box;
+	}
+	#ie{
+		width:300px; height: 300px; border: 2px solid black; margin-top: 50px;
+		position: absolute; left: 100px; margin-left: 20px;
+	}
+	</style>
+</head>
+<body>
+	<div id="bz"></div>
+	<div class="iectain">
+		<div id="ie"></div>
+	</div>
+
+
+	<script async type="text/javascript">
+	console.log("标准盒模型style.width:"+document.getElementById('bz').style.width);
+	console.log("标准盒模型style.height:"+document.getElementById('bz').style.height);
+	console.log("标准盒模型width:getComputedStyle():"+window.getComputedStyle(document.getElementById('bz')).width)
+	console.log("标准盒模型getBoundingClientRect():")
+	console.log(document.getElementById('bz').getBoundingClientRect());
+	
+	console.log("IE盒模型style.width:"+document.getElementById('ie').style.width);
+	console.log("IE盒模型style.height:"+document.getElementById('ie').style.height);
+	console.log("IE盒模型width:getComputedStyle():"+window.getComputedStyle(document.getElementById('ie')).width);
+	console.log(document.getElementById('ie').getBoundingClientRect());
+	
+	</script>
+</body>
+</html>

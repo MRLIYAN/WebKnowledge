@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.sayname=function(){
+            return this.name
+    }
+    var person = new Person('小明',20);
+    console.log(person)
+    console.log(person.sayname())
+    
+
+    /*
+        该模式把属性放在实例中，公用方法放在原型对象中，这样就不会产生原型模式所引发的实例共享问题，此模式是
+        比较完善的创建对象方式，也是目前ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法
+        该模式由此扩展了动态原型模式
+    */
+    </script>
+</body>
+</html>

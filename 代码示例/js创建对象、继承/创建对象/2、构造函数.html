@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        this.sayname = function(){
+            alert(this.name);
+        }
+    }
+
+    var p1 = new Person("小红",20);
+    var p2 = new Person("小名",24);
+
+    console.log(p1);
+    console.log(p2);
+
+    //构造函数创建对象的问题
+    //js中函数就是一个对象，每次创建对象，内部的方法都会在实例上重新创建，如下
+    function Person2(name,age){
+        this.name = name;
+        this.age = age;
+        this.sayname = new Function("alert(this.name)");
+    }
+
+    //上述问题解决方法，把函数提到全局作用域中
+    function Person3(name,age){
+        this.name = name;
+        this.age = age;
+        this.sayname = sayname
+    }
+
+    function sayname(){
+        return this.name;
+    }
+    var pp = new Person3("函数全局",20);
+    console.log(pp.sayname())
+
+    /*
+        上面又有新的问题，一个对象的方法提到了全局作用域，假设有若干对象，或者有若干方法，
+        那么全局中全部都是对象的方法，那么对于js函数的封装就很差了，所以构造函数创建对象有缺陷，产生了原型模式
+    */
+    </script>
+</body>
+</html>

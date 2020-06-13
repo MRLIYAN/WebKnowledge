@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    
+        function Person(){
+            this.name = 'person';
+            this.colors = ['red','blue'];
+        }
+        Person.prototype.func = function(){
+            return this.name;
+        }
+
+        function Child(){
+            this.name = 'child';
+            this.age = 20;
+            Person.call(this);
+        }
+        Child.prototype = new Person();
+
+        var c = new Child();
+        console.log(c.func())
+        console.log(c.colors)
+        console.log(c.age)
+
+        console.log("--------------------------------------")
+        /*
+            组合继承为使用最广泛的继承，但是上面的组合继承仍有问题
+            1、Person的构造函数调用了两次
+            2、Child.constructor指向了Person
+        */
+        console.log(c.__proto__.constructor)
+        console.log("--------------------------------------")
+        //解决办法1
+        function Person2(){
+            this.name = 'person';
+            this.colors = ['red','blue'];
+        }
+        Person2.prototype.func = function(){
+            return this.name;
+        }
+
+        function Child2(){
+            this.name = 'child';
+            this.age = 20;
+            Person2.call(this);
+        }
+        Child2.prototype = Person2.prototype;
+
+        var c2 = new Child2();
+        console.log(c2.colors)
+        console.log(c2.__proto__.constructor)
+
+        console.log("--------------------------------------")
+
+        /*
+            以上问题虽然解决了构造函数重复创建问题，但是c2的原型对象的constructor依然指向父类的构造函数。
+            可以如下解决:
+        */
+        function Person3(){
+            this.name = 'person';
+            this.colors = ['red','blue'];
+        }
+        Person3.prototype.func = function(){
+            return this.name;
+        }
+
+        function Child3(){
+            this.name = 'child';
+            this.age = 20;
+            Person3.call(this);
+        }
+        Child3.prototype = Person3.prototype;
+        Child3.prototype.constructor = Child3;
+
+        var c3 = new Child3();
+        console.log(c3.colors)
+        console.log(c3.__proto__.constructor)
+
+        console.log("--------------------------------------")
+        /*
+            以上是比较完善的组合继承的解决方案，但是还有一种，也是与原型式继承比较相似的。如下：
+        */
+        function Person4(){
+            this.name = 'person';
+            this.colors = ['red','blue'];
+        }
+        Person4.prototype.func = function(){
+            return this.name;
+        }
+
+        function Child4(){
+            this.name = 'child';
+            this.age = 20;
+            Person4.call(this);
+        }
+        Child4.prototype = Object.create(Person4.prototype);
+        Child4.prototype.constructor = Child4;
+
+        var c4 = new Child4();
+        console.log(c4.colors)
+        console.log(c4.__proto__.constructor)
+
+        console.log("--------------------------------------")
+    </script>
+</body>
+</html>

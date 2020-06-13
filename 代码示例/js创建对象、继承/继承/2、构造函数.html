@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    function Person(name){
+        this.colors = ['red','blue'];
+        this.name = name;
+    }
+
+    function Child(name){
+        Person.call(this,name)
+        this.age = 20;
+    }
+
+    var c = new Child("小明");
+    c.colors.push('ccolor');
+    console.log(c.colors);
+    console.log(c.age);
+    console.log(c.name);
+
+    var c2 = new Child("小红");
+    c2.colors.push('c2color');
+    console.log(c2.colors);
+    console.log(c.age);
+    console.log(c.name);
+
+    /*
+        此模式解决了实例共享问题，但是也有问题，同构造函数创建对象的问题一样，函数要么会重复创建，要么函数没法复用封装。
+        组合继承出现
+    */
+    </script>
+</body>
+</html>

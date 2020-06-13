@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    /*
+        在前几种都不适用的情况下可以使用寄生构造函数，寄生构造函数模式的思想就是仅仅创建一个函数，
+        在该函数里面创建对象，最终返回这个对象，从表面看，这个模式像构造函数模式，如下：
+    */
+    function Person(name,age){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.sayName = function(){
+            alert(this.name);
+        }
+        return o;
+    }
+    var p = new Person('小明',20);
+    console.log(p);
+
+    /*
+        从上面可以看出，该模式除了使用new操作符并把使用的包装函数叫做构造函数之外，和工厂模式几乎一模一样
+        我们在回一下工厂模式，如下：
+    */
+    function objcreate(naem,age){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.sayName = function(){
+            alert(this.name);
+        }
+        return o;
+    }
+    var obj = objcreate('小明',28);
+
+    /*
+        看出区别没？
+            工厂模式直接等于函数来创建对象，接收的是函数内部返回的对象
+            寄生模式比工厂模式要怪异的地方是使用new操作符并把外部包装函数叫做构造函数，来new对象。
+
+        构造函数在不返回值得情况下，默认会返回新对象实例。而通过构造函数末尾添加return语句，可以重写调用构造函数时候的返回值。
+        （来自js高程3，说实话，我没明白上面话什么意思。）
+
+        寄生构造函数模式可以在特殊的情况下用来为对象创建构造函数，假设我们想创建一个额外方法的特殊数组，
+        由于不能直接修改Array构造函数，可以用此模式。
+    */
+
+    function specialArray(){
+        var array = new Array();
+        array.push.apply(array,arguments);
+        array.tojoin=function(){
+            return array.join("|")
+        }
+        return array;
+    }
+    var arrayObj = new specialArray('red','blue','yellow');
+    console.log(arrayObj.tojoin())
+    /*
+        以上给数组创建了一个特殊方法，tojoin()，返回一个数组，用 | 分隔。
+
+        注意：寄生构造函数模式，返回的对象与构造函数或者构造函数的原型属性之间
+             没有关系，也就是说，构造函数返回的对象和构造函数在外部创建的对象没有什么不同。
+             为此不能用instanceof确定对象类型，由于存在上述问题，我们不推荐在可以使用其他模式的
+             情况下，使用该模式。
+    */
+    </script>
+</body>
+</html>

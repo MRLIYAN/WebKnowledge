@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*
+            道格拉斯-克罗克福德发明js中的稳妥对象这个概念，所谓稳妥指的是没有公共的属性，而且其方法也
+            不引用this的对象。稳妥对象最适合在一些安全的环境中使用（这些环境中会禁止使用this和new）。
+            或者在防止数据被其他应用程序（如Mashup）改动时使用。
+            寄生构造函数遵循类似的模式，但是有两点不同，一是新创建的实例的方法不引用this，二是不使用new操
+            作符调用构造函数。如下例子：
+        */
+        function Person(name,age){
+            var o = new Object();
+            o.sayname = function(){
+                return name;
+            }
+            o.sayage = function(){
+                return age;
+            }
+            return o;
+        }
+        /*
+            在这种模式创建的对象中，只可以使用sayName方法，没有其他办法访问name的值，稳妥构造函数的使用方式如下：
+        */
+        var p = Person('小明',20);
+        console.log(p.sayname());
+        console.log(p.sayage());
+
+        /*
+            变量p中保存的是一个稳妥对象，这样除了调用sayName()方法，没有别的方式可以访问其数据成员，即使有其他代码给
+            这个对象添加方法或者数据成员，但也不可能有别的方法访问传到构造函数中的原始数据。
+            稳妥构造函数提供这种安全性，使得他非常适合在某些安全执行环境提供的环境下使用。
+        */
+    </script>
+</body>
+</html>

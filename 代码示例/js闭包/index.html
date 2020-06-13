@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    /*
+        什么是闭包？
+            js的闭包指的是有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式就是
+            在一个函数中创建另一个函数
+    */
+    function person(){
+        var name = 'person中的变量'
+        return function(){
+            return name;
+        }
+    } 
+
+    var a = person()()
+    console.log(a)
+
+    /*
+        person内部中返回了一个函数，内部函数可以访问外部函数中person中的变量，反之，不行。
+        这是因为js链式作用域：子对象会一级一级向上寻找所有父对象的变量，反之不行。
+                            js中函数内部可以读取全局变量，函数外部不能读取函数内部的局部变量。
+    */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    function Parent(){
+        this.status = true;
+        this.colors = ['black','red'];
+    }
+    Parent.prototype.func = function(){
+        return this.status;
+    }
+
+    function Child(){
+        this.status = false;
+    }
+
+    Child.prototype = new Parent();
+
+    Child.prototype.func = function(){
+        return this.status;
+    }
+
+    var c = new Child();
+    console.log(c.func())
+
+    //原型模式的问题，与原型创建构造函数的问题一样，属性共享，如下：
+    var c1 = new Child();
+    c1.colors.push('c1color');
+    console.log(c1.colors);
+
+    var c2 = new Child();
+    c2.colors.push('c2color');
+    console.log(c2.colors);
+
+    //次模式的继承，有缺陷，引出构造函数模式的继承
+
+    </script>
+</body>
+</html>

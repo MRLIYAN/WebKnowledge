@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    /*
+        在js高级程序设计3中是这么说的，在其他面向对象的语言经验的开发人员在看到独立的构造函数和原型时，
+        很可能会感到非常困惑，动态原型模式正式致力于解决这个问题的一个方案
+        他把所有信息都封装在了构造函数中，而通过在构造函数中初始化原型（仅在必要的情况下，），又保持了
+        同时使用构造函数和原型的有点，换句话说，可以通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型
+    */
+
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        if(this.sayname != 'function'){
+            Person.prototype.sayname = function(){
+                return this.name;
+            }
+        }
+    }
+
+    var person = new Person('小明',20);
+    console.log(person);
+    console.log(person.sayname())
+    
+    </script>
+</body>
+</html>

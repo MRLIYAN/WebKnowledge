@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsonp</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+    var funcName = 'jsonpfunc';//随机生成函数名，可动态创建函数名，防止重复
+    window[funcName] = function(data){
+        console.log(data);
+    } 
+
+    </script>
+
+    <!-- 下面的script标签请求的为服务端地址，无论请求什么地址，只要是返回一个可执行的js脚本即可，这里用js模拟-->
+    <!-- 通过路径传参的形式把自己定义的回调函数名字传给服务端 -->
+    <script type="text/javascript" src="./data.js?callback=funcName"></script>
+</body>
+</html>
