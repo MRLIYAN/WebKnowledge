@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    #main{
+        width: 100px; height: 100px; background:red;
+    }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/javascript">
+
+    //event.stopImmediatePropagation()应用
+    var main = document.getElementById('main');
+    main.addEventListener('click',function(e){
+        alert('a');
+    })
+    main.addEventListener('click',function(e){
+        alert('c1');
+        e.stopImmediatePropagation();//注意：c2依然会执行，阻止的是此方法后面的点击方法
+        alert('c2');
+    })
+    main.addEventListener('click',function(e){
+        alert('b');
+    })
+    </script>
+</body>
+</html>
