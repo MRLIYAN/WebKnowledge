@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    function fun(n,o){
+        console.log(o);
+        return {
+            fun:function(m){
+                return fun(m,n);
+            }
+        }
+    }
+
+    var a = fun(0);
+    a.fun(1);
+    a.fun(2);
+    a.fun(3);
+
+
+
+    //递归求和1+2+3+4+....+n
+        function recursion(i){
+            if(i==1){
+                return i;
+            }
+            return i+recursion(i-1)
+        }
+        alert(recursion(100))
+
+        //上面的题以测试用例的角度分析，需要那些值进行测试，为什么
+        /**
+         * 偶数
+         * 奇数
+         * 边界数，0，1
+         * 负数
+         * 小数
+         * 等等，想想为啥用这些测bug
+         * 
+         * /
+        
+    //写一个通用的事件侦听器函数
+
+
+
+
+    //算法问题，封装一个函数，输入中文数字，转换出对应的数字，如下：
+    function toInt(s){
+        //"二十一" ==> 21
+        //"九百九十九"  ==>  999
+        //.......
+    }
+    </script>
+</body>
+</html>
